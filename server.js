@@ -2,17 +2,26 @@
 require('dotenv').config(); // .env file se variables load karega
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors');
+const cors = require('cors'); // CORS middleware import kiya gaya hai
 
 const app = express();
 const PORT = process.env.PORT || 3000; 
 const mongoURI = process.env.MONGO_URI; 
 
+// CLIENT_ORIGIN ko Environment Variables se liya gaya hai.
+// Agar Render par set nahi hai, toh '*' (sabhi ko allow karein) use karein.
+const CLIENT_ORIGIN = process.env.CLIENT_ORIGIN || '*'; 
+
 // ---------------------------------
 // Middleware Setup
 // ---------------------------------
-// CORS ko sabhi origins ke liye enable kiya gaya hai (Temporary/Testing ke liye)
-app.use(cors()); 
+// CORS ko specific origin ya '*' ke liye allow karein (Render environment ke liye zaroori)
+app.use(cors({
+    origin: CLIENT_ORIGIN,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    credentials: true,
+})); 
+
 app.use(express.json()); // JSON request body ko parse karne ke liye
 
 // ---------------------------------
