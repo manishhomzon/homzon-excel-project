@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Registration</title>
+    <link rel="stylesheet" href="employee-register-style.css"> 
+    <style>
+        /* शिफ्ट इनपुट को शुरू में छिपाने के लिए CSS
+        यह स्टाइल आपके employee-register-style.css में भी जा सकता है,
+        लेकिन त्वरित परीक्षण के लिए यहाँ जोड़ा गया है।
+        */
+        .shift-input-group {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="registration-container">
+        <header class="reg-header">
+            <h1>Employee Registration Form</h1>
+            <p>Enter the details of the new employee, including shift timings.</p>
+        </header>
+
+        <form id="employeeRegistrationForm">
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="empName">Employee Name <span class="required">*</span></label>
+                    <input type="text" id="empName" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="department">Department <span class="required">*</span></label>
+                    <select id="department" required>
+                        <option value="">-- Select Department --</option>
+                        <option value="HOMZON">Homzon Excel Services Pvt. Ltd</option>
+                        <option value="CANDID">Candid Jobs & Placement</option>
+                        <option value="AAKAAR">Aakaar Construction</option>
+                        <option value="HOMECARE">Home Care</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label for="designation">Designation <span class="required">*</span></label>
+                    <input type="text" id="designation" required>
+                </div>
+
+                </div>
+            
+            <fieldset class="shift-config-fieldset">
+                <legend>Shift Timings Configuration</legend>
+
+                <div class="form-row">
+                    <div class="input-group">
+                        <label for="totalShifts">Total Shifts per Day <span class="required">*</span></label>
+                        <select id="totalShifts" required onchange="toggleShiftInputs()">
+                            <option value="1">1 Shift (Standard)</option>
+                            <option value="2">2 Shifts</option>
+                            <option value="3">3 Shifts</option>
+                        </select>
+                        <small> (यह अटेंडेंस लिमिट सेट करेगा)</small>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="shift1TimeAllowed">Shift 1 Time-In <span class="required">*</span></label>
+                        <input type="time" id="shift1TimeAllowed" required value="09:00"> 
+                        <small> (पहली शिफ्ट की अनुमत टाइमिंग)</small>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="input-group shift-input-group" id="shift2Group">
+                        <label for="shift2TimeAllowed">Shift 2 Time-In <span class="required">*</span></label>
+                        <input type="time" id="shift2TimeAllowed" value="15:00">
+                    </div>
+
+                    <div class="input-group shift-input-group" id="shift3Group">
+                        <label for="shift3TimeAllowed">Shift 3 Time-In <span class="required">*</span></label>
+                        <input type="time" id="shift3TimeAllowed" value="22:00">
+                    </div>
+                </div>
+            </fieldset>
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="basicSalary">Basic Salary (₹)</label>
+                    <input type="number" id="basicSalary" min="0">
+                </div>
+                <div class="input-group">
+                    <label for="specialAllowance">Special Allowance (₹)</label>
+                    <input type="number" id="specialAllowance" min="0">
+                </div>
+                <div class="input-group">
+                    <label for="conveyance">Conveyance (₹)</label>
+                    <input type="number" id="conveyance" min="0">
+                </div>
+                <div class="input-group">
+                    <label for="paidLeaves">Paid Leaves (Monthly)</label>
+                    <input type="number" id="paidLeaves" value="0" min="0">
+                </div>
+            </div>
+
+            <div class="form-row statutory-row">
+                <div class="checkbox-group">
+                    <label>EPF (Employee Provident Fund)</label>
+                    <input type="radio" id="epfYes" name="epf" value="Yes"> <label for="epfYes">Yes</label>
+                    <input type="radio" id="epfNo" name="epf" value="No" checked> <label for="epfNo">No</label>
+                </div>
+                
+                <div class="checkbox-group">
+                    <label>ESIC (Employee State Insurance)</label>
+                    <input type="radio" id="esicYes" name="esic" value="Yes"> <label for="esicYes">Yes</label>
+                    <input type="radio" id="esicNo" name="esic" value="No" checked> <label for="esicNo">No</label>
+                </div>
+            </div>
+            
+            <div class="button-row">
+                <button type="submit" class="action-btn submit-btn">Submit</button>
+                <button type="button" class="action-btn back-btn" onclick="window.location.href='dashboard.html'">Back</button>
+                <button type="button" class="action-btn logout-btn" onclick="window.location.href='index.html'">Logout</button>
+            </div>
+        </form>
+    </div>
+    
+    <script>
+        function toggleShiftInputs() {
+            const totalShifts = parseInt(document.getElementById('totalShifts').value);
+            const shift2Group = document.getElementById('shift2Group');
+            const shift3Group = document.getElementById('shift3Group');
+            const shift2Input = document.getElementById('shift2TimeAllowed');
+            const shift3Input = document.getElementById('shift3TimeAllowed');
+
+            // Shift 2
+            if (totalShifts >= 2) {
+                shift2Group.style.display = 'block';
+                shift2Input.setAttribute('required', 'required');
+            } else {
+                shift2Group.style.display = 'none';
+                shift2Input.removeAttribute('required');
+                shift2Input.value = ''; // Value clear करें
+            }
+
+            // Shift 3
+            if (totalShifts === 3) {
+                shift3Group.style.display = 'block';
+                shift3Input.setAttribute('required', 'required');
+            } else {
+                shift3Group.style.display = 'none';
+                shift3Input.removeAttribute('required');
+                shift3Input.value = ''; // Value clear करें
+            }
+        }
+
+        // पेज लोड होने पर इनपुट को सही ढंग से छिपाना सुनिश्चित करें
+        document.addEventListener('DOMContentLoaded', toggleShiftInputs);
+    </script>
+    
+    <script src="employee-register.js"></script>
+</body>
+</html>

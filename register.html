@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - HOMZON EXCEL SERVICES</title>
+    <link rel="stylesheet" href="style.css"> 
+    
+    <style>
+        body { opacity: 0; transition: opacity 0.5s ease-in-out; }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        
+        <header class="company-info">
+            <h1 class="company-name">HOMZON EXCEL SERVICES PVT. LTD.</h1>
+            <p class="address">640, Narsingh Ward, Above Bandhan Bank, Madan Mahal, Jabalpur (M.P.)-482001</p>
+        </header>
+
+        <h2 class="form-title">New User Registration</h2>
+        
+        <div id="message" class="message-area"></div>
+
+        <form id="registrationForm"> 
+            
+            <div class="input-group">
+                <label for="name">पूरा नाम (Full Name):</label>
+                <input type="text" id="name" name="name" required> 
+            </div>
+            
+            <div class="input-group">
+                <label for="email">ईमेल (Email / Custom ID):</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="password">पासवर्ड (Password):</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            
+            <button type="submit" id="registerButton" class="main-btn">REGISTER</button>
+        </form>
+
+        <div class="extra-actions">
+            <button type="button" class="link-btn" onclick="window.location.href='index.html'">
+                Go to Login Page
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script> 
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advance Eligibility - HOMZON EXCEL SERVICES</title>
+    <link rel="stylesheet" href="dashboard-style.css"> 
+    </head>
+<body>
+    <div class="dashboard-container">
+        
+        <header class="header">
+            <h1 id="eligibilityHeader">HOMZON GROUP ADVANCE ELIGIBILITY CALCULATOR</h1> 
+            <p id="subHeader">Please select an employee to view the estimated advance for the month.</p>
+        </header>
+
+        <div class="selection-area">
+            <h3>एडवांस चेक करने के लिए कर्मचारी चुनें:</h3>
+            <select id="advEmpName" class="form-control emp-select">
+                <option value="">-- कर्मचारी चुनें --</option>
+            </select>
+        </div>
+
+        <div class="eligibility-box">
+            <h2 id="currentSalaryDisplay">कुल अनुमानित अर्जित सैलरी (आज तक): ₹ 0.00</h2>
+            <p class="eligibility-sub-text">आपकी अधिकतम एडवांस एलिजिबिलिटी (50%) है:</p>
+            <span class="eligibility-amount" id="advanceAmountDisplay">₹ 0.00</span>
+            <p class="note">यह राशि बिना किसी कटौती (Tax/PF) के अनुमानित है।</p>
+        </div>
+        
+        <div class="back-button-area">
+            <button class="action-btn back-btn" onclick="window.location.href='dashboard.html'">
+                ← डैशबोर्ड पर वापस जाएं
+            </button>
+        </div>
+
+    </div>
+
+    <script src="advance-eligibility.js"></script> 
+</body>
+</html>

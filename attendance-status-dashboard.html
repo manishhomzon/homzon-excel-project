@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Attendance Status</title>
+    <link rel="stylesheet" href="attendance-style.css"> 
+    <style>
+        /* Status Table के लिए साधारण CSS */
+        .status-table-container { margin-top: 20px; }
+        .status-table { width: 100%; border-collapse: collapse; }
+        .status-table th, .status-table td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        .status-table th { background-color: #f2f2f2; }
+        .status-table .present { background-color: #e6ffe6; }
+        .status-table .absent { background-color: #ffe6e6; }
+        .status-table .late { background-color: #fffbe6; }
+        .status-table .halfday { background-color: #f0e6ff; }
+        .summary-box { margin-bottom: 20px; padding: 10px; background-color: #f4f4f4; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="attendance-container">
+        <header class="att-header">
+            <h1>Employee Attendance Status</h1>
+            <p>View historical attendance data by employee.</p>
+        </header>
+
+        <form id="statusForm">
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="statusEmpName">Select Employee <span class="required">*</span></label>
+                    <select id="statusEmpName" required>
+                        <option value="">-- Select Employee --</option>
+                        </select>
+                </div>
+                <button type="submit" class="action-btn submit-btn" id="viewStatusBtn">View Status</button>
+            </div>
+        </form>
+
+        <div class="status-table-container">
+            <div id="summaryOutput" class="summary-box"></div>
+            <table id="attendanceTable" class="status-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time In</th>
+                        <th>Allowed Time</th>
+                        <th>Status</th>
+                        <th>Department</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    </tbody>
+            </table>
+            <p id="noDataMessage" style="color: grey; text-align: center; margin-top: 20px;">
+                Please select an employee to view the attendance history.
+            </p>
+        </div>
+
+        <div class="button-row">
+            <button type="button" class="action-btn back-btn" onclick="window.location.href='dashboard.html'">Back to Dashboard</button>
+        </div>
+    </div>
+    
+    <script src="attendance-status-script.js"></script> 
+</body>
+</html>

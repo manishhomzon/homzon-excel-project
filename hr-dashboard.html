@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Dashboard - Homzon Group</title>
+    <link rel="stylesheet" href="dashboard-style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Specific styles for the HR Welcome message */
+        .hr-welcome h1 {
+            color: #ff6f00; /* Matching the HR button color */
+            font-size: 2.5em;
+            margin-bottom: 5px;
+        }
+        .hr-welcome p {
+            font-size: 1.1em;
+            color: #555;
+            /* FIX: हेडर के नीचे की स्पेसिंग कम की गई */
+            margin-bottom: 10px; 
+        }
+
+        /* बटन ग्रिड/रो स्टाइलिंग */
+        .button-grid-section {
+            padding: 15px; /* FIX: पैडिंग कम की गई */
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            /* FIX: ऊपर की स्पेसिंग कम की गई */
+            margin-top: 5px; 
+            background-color: #fff;
+        }
+        
+        .button-grid-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px; /* FIX: बटनों के बीच की स्पेसिंग कम की गई */
+            justify-content: flex-start; 
+            margin-bottom: 10px; /* FIX: नीचे की स्पेसिंग कम की गई */
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f0f0f0; 
+        }
+
+        .button-grid-row:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        /* बटन स्टाइलिंग और चौड़ाई का फिक्स */
+        .action-btn {
+            height: 55px; /* FIX: हाइट थोड़ी कम की गई */
+            font-size: 0.95em; /* FIX: फॉन्ट साइज़ थोड़ा कम किया गया */
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 12px; /* FIX: पैडिंग कम की गई */
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); 
+            transition: transform 0.2s, box-shadow 0.2s;
+            color: white; 
+            
+            /* 5 बटनों को एक रो में फिट करने के लिए */
+            flex: 1 1 calc(20% - 8px); 
+            box-sizing: border-box; 
+        }
+        
+        /* 4-बटन वाली रो के लिए (लेटर) */
+        .button-grid-row:nth-child(2) .action-btn {
+            flex: 1 1 calc(25% - 8px); 
+        }
+        
+        /* 3-बटन वाली रो के लिए (एडमिन) */
+        .button-grid-row:nth-child(3) .action-btn {
+            flex: 1 1 calc(33.33% - 8px); 
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+        }
+        .action-btn i {
+            margin-right: 6px; /* FIX: आइकन मार्जिन कम किया गया */
+        }
+
+        /* Form Buttons - Custom Vibrant Colors */
+        .form-btn-1 { background-color: #17a2b8; } 
+        .form-btn-2 { background-color: #28a745; } 
+        .form-btn-3 { background-color: #ffc107; color: #343a40; } 
+        .form-btn-4 { background-color: #fd7e14; } 
+        .form-btn-5 { background-color: #6f42c1; } 
+
+        /* Letter Buttons - Adjusted Colors */
+        .letter-btn { background-color: #dc3545; } 
+        .letter-btn:nth-child(2) { background-color: #007bff; } 
+        .letter-btn:nth-child(3) { background-color: #e83e8c; } 
+        .letter-btn:nth-child(4) { background-color: #3f0d12; } 
+
+        /* Admin Buttons - Adjusted Colors */
+        .admin-btn { background-color: #343a40; } 
+        .admin-btn:nth-child(2) { background-color: #0069d9; } 
+        .admin-btn:nth-child(3) { background-color: #1e7e34; } 
+
+        /* back-btn स्टाइलिंग */
+        .back-btn {
+            background-color: #6c757d;
+            flex: 0 0 280px; 
+        }
+        
+        /* Go Back Button कंटेनर स्टाइलिंग (स्पेसिंग कम की गई) */
+        .top-action-row {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 5px; 
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        
+        <header class="header hr-welcome">
+            <h1>Hello HR, Welcome at Homzon Group</h1>
+            <p>This is the central hub for HR Administration and Reporting.</p>
+        </header>
+
+        <div class="main-hr-sections" id="hrSectionsContainer">
+            
+            <div class="top-action-row">
+                <button class="action-btn back-btn" onclick="window.location.href='dashboard.html'">
+                    ⬅️ Go Back to Main Dashboard
+                </button>
+            </div>
+
+
+            <div class="button-grid-section">
+                <h2>✍️ HR Forms</h2>
+                <div class="button-grid-row">
+                    <button class="action-btn form-btn-1" onclick="window.location.href='joining-form.html'">
+                        <i class="fas fa-file-contract"></i> Joining Form
+                    </button>
+                    <button class="action-btn form-btn-2" onclick="alert('Redirect to Home Visit Form')">
+                        <i class="fas fa-home"></i> Home Visit Form
+                    </button>
+                    <button class="action-btn form-btn-3" onclick="alert('Redirect to Advance Request Form')">
+                        <i class="fas fa-money-check-alt"></i> Advance Request Form
+                    </button>
+                    <button class="action-btn form-btn-4" onclick="alert('Redirect to Handover Form')">
+                        <i class="fas fa-exchange-alt"></i> Handover Form
+                    </button>
+                    <button class="action-btn form-btn-5" onclick="alert('Redirect to Assets Issue Form')">
+                        <i class="fas fa-laptop-code"></i> Assets Issue Form
+                    </button>
+                </div>
+
+                <h2>✉️ Official Letters</h2>
+                <div class="button-grid-row">
+                    <button class="action-btn letter-btn" onclick="alert('Redirect to Appointment Letter Generator')">
+                        <i class="fas fa-envelope-open-text"></i> Appointment Letter
+                    </button>
+                    <button class="action-btn letter-btn" onclick="alert('Redirect to Offer Letter Generator')">
+                        <i class="fas fa-file-signature"></i> Offer Letter
+                    </button>
+                    <button class="action-btn letter-btn" onclick="alert('Redirect to Termination Letter Generator')">
+                        <i class="fas fa-times-circle"></i> Termination Letter
+                    </button>
+                    <button class="action-btn letter-btn" onclick="alert('Redirect to Warning Letter Generator')">
+                        <i class="fas fa-exclamation-triangle"></i> Warning Letter
+                    </button>
+                </div>
+
+                <h2>📊 Administration & Reports</h2>
+                <div class="button-grid-row">
+                    <button class="action-btn admin-btn" onclick="alert('Redirecting to Leave Approval Page')">
+                        <i class="fas fa-calendar-check"></i> Leave Approval
+                    </button>
+                    <button class="action-btn admin-btn" onclick="alert('Redirecting to HR Reports')">
+                        <i class="fas fa-chart-line"></i> Monthly Reports
+                    </button>
+                    <button class="action-btn admin-btn" onclick="alert('Redirecting to Salary Update')">
+                        <i class="fas fa-hand-holding-usd"></i> Salary Update
+                    </button>
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</body>
+</html>

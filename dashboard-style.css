@@ -1,0 +1,239 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5; 
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    min-height: 100vh;
+}
+
+.dashboard-container {
+    width: 90%;
+    max-width: 900px; 
+    margin-top: 30px;
+    margin-bottom: 30px; 
+    background-color: #ffffff; 
+    padding: 30px; 
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.03); 
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px; 
+    border-bottom: 1px solid #e0e0e0; 
+    padding-bottom: 15px; 
+}
+
+.header h1 {
+    font-size: 2.3em; 
+    color: #007bff; 
+    margin: 0;
+    font-weight: 600;
+}
+
+.header p {
+    font-size: 1em; 
+    color: #555;
+    margin-top: 5px;
+}
+
+/* ** बटन रो (Button Row) स्टाइलिंग - डैशबोर्ड पेज के लिए ** */
+.action-buttons-row {
+    display: flex;
+    justify-content: space-between; 
+    gap: 15px; 
+    margin-top: 25px; 
+    padding: 15px; 
+    border: 1px solid #e0e0e0; 
+    border-radius: 10px; 
+    background-color: #fdfdfd; 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* सभी Action Buttons के लिए सामान्य स्टाइल (3D शैडो) */
+.action-btn {
+    flex: 1; 
+    padding: 22px 10px; 
+    font-size: 1em; 
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.25s ease-out; 
+    border: none;
+    color: white; 
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.action-btn:hover {
+    transform: translateY(-4px); 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); 
+}
+
+/* ----------------- डैशबोर्ड बटन रंग ----------------- */
+
+/* 💥 NEW FIX: HR Dashboard Button Styling 💥 */
+.action-btn.hr-btn { 
+    background-color: #ff6f00; /* आकर्षक नारंगी/सुनहरा रंग */
+    border: 2px solid #e65100;
+    font-weight: 700;
+    /* एक अलग छाया ताकि यह मुख्य बटन दिखे */
+    box-shadow: 0 5px 12px rgba(255, 111, 0, 0.5); 
+}
+.action-btn.hr-btn:hover { 
+    background-color: #e65100; 
+    box-shadow: 0 8px 15px rgba(255, 111, 0, 0.7);
+}
+/* ----------------------------------------------------- */
+
+.action-btn.reg-btn { background-color: #28a745; }
+.action-btn.reg-btn:hover { background-color: #218838; }
+.action-btn.att-btn { background-color: #ffc107; color: #333; }
+.action-btn.att-btn:hover { background-color: #e0a800; }
+.action-btn.sal-btn { background-color: #17a2b8; }
+.action-btn.sal-btn:hover { background-color: #138496; }
+.action-btn.logout-btn { background-color: #dc3545; }
+.action-btn.logout-btn:hover { background-color: #c82333; }
+.action-btn.status-btn { background-color: #007bff; }
+.action-btn.status-btn:hover { background-color: #0056b3; } 
+.action-btn.delete-emp-btn { background-color: #6c757d; }
+.action-btn.delete-emp-btn:hover { background-color: #5a6268; }
+.action-btn.report-btn { background-color: #6f42c1; }
+.action-btn.report-btn:hover { background-color: #5936a5; } 
+.action-btn.advance-eligibility-btn { background-color: #fd7e14; }
+.action-btn.advance-eligibility-btn:hover { background-color: #e66a00; }
+.action-btn.print-salary-slip-btn { background-color: #6610f2; }
+.action-btn.print-salary-slip-btn:hover { background-color: #520dc2; }
+
+
+/* ========================================================== */
+/* 🚀 ADVANCE ELIGIBILITY CALCULATOR PAGE STYLING */
+/* ========================================================== */
+
+/* चयन क्षेत्र (Employee Selection Area) */
+.selection-area {
+    text-align: center;
+    margin-top: 15px; 
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #f8f9fa; 
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05); 
+}
+
+.selection-area h3 {
+    color: #343a40;
+    margin-top: 0;
+    margin-bottom: 15px; 
+    font-size: 1.1em;
+}
+
+/* ड्रॉपडाउन स्टाइल (FORM-CONTROL) */
+.form-control.emp-select {
+    border: 1px solid #ced4da;
+    border-radius: 8px; 
+    padding: 10px;
+    font-size: 1em;
+    width: 60%; 
+    max-width: 350px; 
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s;
+}
+
+.form-control.emp-select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* एलिजिबिलिटी बॉक्स (Main Calculation Box) */
+.eligibility-box {
+    text-align: center;
+    padding: 30px 25px; 
+    margin-top: 25px; 
+    border-radius: 15px; 
+    
+    background-color: #e6f0ff; 
+    border: 1px solid #cce5ff;
+    
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12), 0 5px 15px rgba(0, 0, 0, 0.05); 
+    transition: box-shadow 0.3s ease;
+}
+
+.eligibility-box:hover {
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.15), 0 7px 20px rgba(0, 0, 0, 0.08); 
+}
+
+/* बॉक्स के अंदर के टेक्स्ट को कॉम्पैक्ट करें */
+.eligibility-box h2 {
+    font-size: 1.1em; 
+    color: #343a40; 
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.eligibility-sub-text {
+    font-size: 1em;
+    color: #007bff; 
+    margin-top: 10px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* एलिजिबिलिटी अमाउंट */
+.eligibility-amount {
+    font-size: 4em !important; 
+    font-weight: 900;
+    color: #dc3545; 
+    margin: 5px 0 15px; 
+    display: block;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15); 
+}
+
+.eligibility-box .note {
+    font-size: 0.85em;
+    color: #6c757d;
+    margin-top: 10px;
+}
+
+/* ------------------------------------------------------------------- */
+/* 🚀 WORLD CLASS LOOK: 'डैशबोर्ड पर वापस जाएं' बटन स्टाइलिंग (FINAL) 🚀 */
+/* ------------------------------------------------------------------- */
+
+.back-button-area {
+    /* 💥 CENTER ALIGNMENT 💥 */
+    text-align: center;
+    margin-top: 40px; /* ऊपर से अच्छी स्पेसिंग */
+}
+
+.back-btn {
+    /* action-btn क्लास से सामान्य स्टाइलिंग प्राप्त करता है */
+    
+    /* 💥 NEW COLOR EFFECT: प्रीमियम ब्लू/स्काई ब्लू 💥 */
+    background: linear-gradient(145deg, #007bff, #0056b3) !important; 
+    color: white !important;
+    font-weight: 700 !important;
+    padding: 12px 30px !important; /* साइज़ थोड़ा बड़ा किया */
+    font-size: 1.1em !important;
+    width: auto !important;
+    
+    /* 💥 WORLD CLASS NEUMORPHIC SHADOW 💥 */
+    border-radius: 50px !important; /* पिल-शेप बटन */
+    box-shadow: 0 8px 15px rgba(0, 123, 255, 0.4), 0 4px 6px rgba(0, 0, 0, 0.1) !important; 
+    transition: all 0.3s ease-in-out !important;
+}
+
+/* 💥 HOVER EFFECT (प्रीमियम प्रेस इफ़ेक्ट) 💥 */
+.back-btn:hover {
+    transform: translateY(-5px) !important; /* ज्यादा उठाव */
+    box-shadow: 0 15px 25px rgba(0, 123, 255, 0.6), 0 6px 8px rgba(0, 0, 0, 0.15) !important; 
+    background: linear-gradient(145deg, #0088ff, #0066d0) !important;
+}
+
+/* 💥 ACTIVE EFFECT (जब क्लिक किया जाता है) 💥 */
+.back-btn:active {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}

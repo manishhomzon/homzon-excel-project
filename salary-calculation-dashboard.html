@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detailed Salary Calculation | Homzon</title>
+    <link rel="stylesheet" href="attendance-style.css"> 
+    <style>
+        /* Salary Display Styling (Previous styles + additions) */
+        #employeeDetails, #attendanceSummary, #salaryOutput {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        #attendanceSummary h3, #salaryOutput h3 {
+            border-bottom: 1px dashed #ddd;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+        .salary-row, .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        .net-pay {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #28a745; 
+            margin-top: 20px;
+            border-top: 2px solid #28a745;
+            padding-top: 10px;
+        }
+        .input-group.half-width {
+            flex: 1 1 48%; /* दो इनपुट को एक ही लाइन में लाने के लिए */
+        }
+    </style>
+</head>
+<body>
+    <div class="attendance-container">
+        <header class="att-header">
+            <h1>Detailed Salary Calculation</h1>
+            <p>Calculate net salary based on precise attendance rules.</p>
+        </header>
+
+        <form id="salaryForm">
+            <div class="form-row">
+                <div class="input-group half-width">
+                    <label for="calcMonth">Month <span class="required">*</span></label>
+                    <select id="calcMonth" required>
+                        </select>
+                </div>
+                <div class="input-group half-width">
+                    <label for="calcYear">Year <span class="required">*</span></label>
+                    <select id="calcYear" required>
+                         </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="input-group" style="width: 100%;">
+                    <label for="calcEmpName">Select Employee <span class="required">*</span></label>
+                    <select id="calcEmpName" required>
+                        <option value="">-- Select Employee --</option>
+                        </select>
+                </div>
+            </div>
+             
+            <div class="form-row" style="margin-top: 15px;">
+                <div class="input-group">
+                    <label for="advanceDeduction">Advance Deduction (₹)</label>
+                    <input type="number" id="advanceDeduction" value="0" min="0">
+                </div>
+                </div>
+
+
+            <button type="submit" class="action-btn submit-btn" id="calculateBtn">Calculate Salary</button>
+        </form>
+
+        <div id="employeeDetails" style="display: none;">
+            <h3>Employee & Salary Details</h3>
+            <div class="salary-row"><p><strong>Employee Name:</strong></p><p id="outName"></p></div>
+            <div class="salary-row"><p><strong>Employee Code:</strong></p><p id="outCode"></p></div>
+            <div class="salary-row"><p><strong>Department:</strong></p><p id="outDept"></p></div>
+            <div class="salary-row"><p><strong>Designation:</strong></p><p id="outDesignation"></p></div>
+            <div class="salary-row"><p><strong>Basic Salary (Monthly):</strong></p><p id="outBasic"></p></div>
+            <div class="salary-row"><p><strong>Special Allowance (Monthly):</strong></p><p id="outSpecial"></p></div>
+            <div class="salary-row"><p><strong>Conveyance (Monthly):</strong></p><p id="outConveyance"></p></div>
+            <div class="salary-row"><p><strong>Paid Leaves (Registered):</strong></p><p id="outPaidLeaves"></p></div>
+        </div>
+
+        <div id="attendanceSummary" style="display: none;">
+            <h3>Attendance Summary</h3>
+            <div class="summary-row"><p><strong>Total Days in Month:</strong></p><p id="sumTotalDays"></p></div>
+            <div class="summary-row"><p><strong>Present Days (Full):</strong></p><p id="sumPresent"></p></div>
+            <div class="summary-row"><p><strong>Late Entries Count:</strong></p><p id="sumLate"></p></div>
+            <div class="summary-row"><p><strong>Half Day Count:</strong></p><p id="sumHalfday"></p></div>
+            <div class="summary-row"><p><strong>Total Absent Days (Calculated):</strong></p><p id="sumTotalAbsent"></p></div>
+            <div class="summary-row"><p><strong>Actual Absent (After Paid Leaves):</strong></p><p id="sumActualAbsent" style="color: red; font-weight: bold;"></p></div>
+        </div>
+        
+        <div id="salaryOutput" style="display: none;">
+            <h3>Final Calculation</h3>
+            <div class="salary-row"><p><strong>Total Gross Payable Days:</strong></p><p id="outPayableDays" style="color: green; font-weight: bold;"></p></div>
+            <div class="salary-row"><p><strong>Per Day Salary:</strong></p><p id="outPerDay"></p></div>
+            <div class="salary-row"><p><strong>Actual Gross Earning:</strong></p><p id="outGrossEarning"></p></div>
+            <hr>
+            <div class="salary-row"><p><strong>EPF Deduction (12%):</strong></p><p id="outEPF" style="color: red;"></p></div>
+            <div class="salary-row"><p><strong>ESIC Deduction (0.75%):</strong></p><p id="outESIC" style="color: red;"></p></div>
+            <div class="salary-row"><p><strong>Advance/Other Deduction:</strong></p><p id="outAdvance" style="color: red;"></p></div>
+            <hr>
+            <div class="salary-row net-pay"><p><strong>NET PAYABLE SALARY:</strong></p><p id="outNetPay"></p></div>
+        </div>
+
+        <div class="button-row" style="margin-top: 20px;">
+            <button type="button" class="action-btn back-btn" onclick="window.location.href='dashboard.html'">Back to Dashboard</button>
+        </div>
+    </div>
+    
+    <script src="salary-calculation-script.js"></script> 
+</body>
+</html>

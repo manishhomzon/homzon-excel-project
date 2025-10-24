@@ -1,0 +1,4 @@
+# .gitignore
+# Ye files online upload nahi honge (Zaroori!)
+node_modules
+.env

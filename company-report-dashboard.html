@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Report Dashboard</title>
+    <link rel="stylesheet" href="dashboard-style.css"> 
+    <style>
+        /* रिपोर्ट डैशबोर्ड के लिए अतिरिक्त स्टाइल */
+        .report-table-container {
+            margin-top: 30px;
+            overflow-x: auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        .report-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95em;
+        }
+        .report-table th, .report-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        .report-table th {
+            background-color: #007bff;
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .report-table tr:nth-child(even) {
+            background-color: #f8f9fa; /* Alternate row color */
+        }
+        .report-table tr:hover {
+            background-color: #e9ecef;
+            cursor: default;
+        }
+        .data-total {
+            font-weight: 700;
+            color: #dc3545; /* लाल रंग */
+        }
+        .info-note {
+            text-align: center;
+            margin-top: 20px;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        
+        <header class="header">
+            <h1>HOMZON GROUP COMPANY REPORT OVERVIEW</h1>
+            <p>यह रिपोर्ट सभी पंजीकृत कर्मचारियों की सैलरी, उपस्थिति और एडवांस एलिजिबिलिटी का सारांश है।</p>
+        </header>
+
+        <div class="selection-area" style="text-align: center;">
+            <h3>रिपोर्ट के लिए महीना और साल चुनें:</h3>
+            <select id="reportMonth" class="form-control" style="padding: 10px;">
+                <option value="current">Current Month</option>
+                </select>
+            <select id="reportYear" class="form-control" style="padding: 10px;">
+                <option value="current">2025</option>
+                </select>
+            <button class="action-btn" id="generateReportBtn" style="background-color: #17a2b8; margin-left: 15px;">
+                Generate Report
+            </button>
+        </div>
+
+        <div class="report-table-container">
+            <table class="report-table">
+                <thead>
+                    <tr>
+                        <th>Employee Name</th>
+                        <th>Dept.</th>
+                        <th>Monthly Gross Salary</th>
+                        <th>Working Days (Till Date)</th>
+                        <th>Estimated Earned Salary</th>
+                        <th>Advance Eligibility (50%)</th>
+                    </tr>
+                </thead>
+                <tbody id="reportTableBody">
+                    <tr><td colspan="6" class="info-note">रिपोर्ट देखने के लिए "Generate Report" पर क्लिक करें।</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="reportTotals" class="info-note" style="font-size: 1.2em; font-weight: 700; color: #333; margin-top: 25px;">
+            Total Estimated Advance Eligibility for all staff: <span class="data-total">₹ 0.00</span>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <button class="action-btn status-btn" onclick="window.location.href='dashboard.html'" style="background-color: #6c757d;">
+                ← डैशबोर्ड पर वापस जाएं
+            </button>
+        </div>
+
+    </div>
+
+    <script src="company-report.js"></script> 
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Local Storage Test</title>
+</head>
+<body>
+    <h1>Local Storage Read Test</h1>
+    <p>यह पेज जाँच करेगा कि Local Storage में 'employees' Key के तहत क्या डेटा है।</p>
+    
+    <div id="testOutput"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const outputDiv = document.getElementById('testOutput');
+            
+            // Local Storage से रॉ डेटा पढ़ें
+            const rawData = localStorage.getItem('employees');
+            
+            // 1. Raw Data दिखाएँ
+            outputDiv.innerHTML += `<h2>1. Raw Data (String)</h2>`;
+            outputDiv.innerHTML += `<p><strong>Key 'employees':</strong> ${rawData}</p>`;
+            
+            // 2. JSON.parse करके Array बनाने की कोशिश करें
+            try {
+                const employees = JSON.parse(rawData) || [];
+
+                outputDiv.innerHTML += `<h2>2. Parsed Data (Array)</h2>`;
+                outputDiv.innerHTML += `<p><strong>Total Employees Found:</strong> ${employees.length}</p>`;
+                
+                // 3. कर्मचारियों के नाम की लिस्ट बनाएँ
+                if (employees.length > 0) {
+                    let nameList = '<ul>';
+                    employees.forEach(emp => {
+                        // यहाँ हम चेक कर रहे हैं कि 'name' फ़ील्ड मौजूद है या नहीं
+                        nameList += `<li>Employee Name: <strong>${emp.name || 'Name Not Found'}</strong>, Dept: ${emp.department || 'N/A'}</li>`;
+                    });
+                    nameList += '</ul>';
+                    outputDiv.innerHTML += nameList;
+                } else {
+                    outputDiv.innerHTML += `<p style="color:red;">❌ Local Storage में 'employees' Key के तहत कोई रजिस्टर्ड डेटा नहीं मिला।</p>`;
+                }
+
+            } catch (e) {
+                // अगर JSON.parse में कोई एरर आती है (जैसे अगर rawData corrupted हो)
+                outputDiv.innerHTML += `<h2 style="color: red;">❌ Parsing Error!</h2>`;
+                outputDiv.innerHTML += `<p>डेटा JSON फॉर्मेट में नहीं है: ${e.message}</p>`;
+            }
+        });
+    </script>
+</body>
+</html>

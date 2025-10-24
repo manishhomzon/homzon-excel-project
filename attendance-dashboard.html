@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Dashboard | Homzon Salary</title>
+    <link rel="stylesheet" href="attendance-style.css"> 
+</head>
+<body>
+    <div class="attendance-container">
+        <header class="att-header">
+            <h1>Homzon Salary Dashboard</h1>
+            <p>Employee Attendance Entry</p>
+        </header>
+
+        <div id="digitalClock" class="digital-clock-style"></div>
+        
+        <form id="attendanceForm">
+            
+            <div class="form-row compact-row">
+                <div class="input-group">
+                    <label for="attEmpName">Employee Name <span class="required">*</span></label>
+                    <select id="attEmpName" required>
+                        <option value="">-- Select Employee --</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label for="attDepartment">Department <span class="required">*</span></label>
+                    <input type="text" id="attDepartment" readonly required>
+                </div>
+            </div>
+
+            <div class="form-row compact-row">
+                <div class="input-group">
+                    <label for="timeIn">Time-In <span class="required">*</span></label>
+                    <input type="time" id="timeIn" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="attDate">Date <span class="required">*</span></label>
+                    <input type="date" id="attDate" required> 
+                </div>
+                
+                <div class="input-group">
+                    <label for="status">Status <span class="required">*</span></label>
+                    <select id="status" required>
+                        <option value="Present">Present</option>
+                        <option value="Absent">Absent</option>
+                        <option value="Late">Late</option>
+                        <option value="Halfday">Halfday</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row status-row compact-row">
+                <div class="input-group overtime-group">
+                    <label for="overtimeHours">Overtime Hours (OT) </label>
+                    <input type="number" id="overtimeHours" min="0" step="0.5" value="0">
+                </div>
+            </div>
+            
+            <div class="button-row">
+                <button type="submit" class="action-btn submit-btn">Submit Attendance</button>
+                <button type="button" class="action-btn back-btn" onclick="window.location.href='dashboard.html'">Back</button>
+                <button type="button" class="action-btn logout-btn" onclick="window.location.href='index.html'">Logout</button>
+            </div>
+        </form>
+    </div>
+    
+    <script src="attendance-script.js"></script> 
+</body>
+</html>

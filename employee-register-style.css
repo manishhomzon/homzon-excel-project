@@ -1,0 +1,217 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); /* हल्का ग्रेडिएंट बैकग्राउंड */
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* OLD: min-height: 100vh; इसे बदला गया है */
+    min-height: 100%; /* सिर्फ़ 100% पर सेट करें */
+    padding: 20px;
+}
+
+.registration-container {
+    width: 100%;
+    max-width: 950px; /* फॉर्म को चौड़ा करें */
+    background-color: #ffffff;
+    padding: 40px 50px;
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15); /* गहरा छाया प्रभाव */
+    /* NEW: जोड़ा गया */
+    margin: auto; /* अगर body 100vh से ज़्यादा हो तो सेंटर में रखे */
+}
+
+.reg-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.reg-header h1 {
+    font-size: 2em;
+    color: #007bff;
+    font-weight: 700;
+}
+
+.reg-header p {
+    color: #666;
+    margin-top: 5px;
+}
+
+/* ** दो/तीन कॉलम लेआउट के लिए Flexbox (General Row) ** */
+.form-row {
+    display: flex;
+    gap: 30px; /* इनपुट समूहों के बीच की जगह */
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* Responsive wrap */
+}
+
+.input-group {
+    flex: 1; /* समान चौड़ाई */
+    display: flex;
+    flex-direction: column;
+    min-width: 200px; /* सुनिश्चित करें कि इनपुट बहुत छोटे न हों */
+}
+
+.input-group label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #555;
+    font-size: 0.95em;
+}
+
+.required {
+    color: #dc3545; /* लाल स्टार */
+    font-weight: bold;
+}
+
+.input-group input, .input-group select {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus, .input-group select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+    outline: none;
+}
+
+/* छोटी टेक्स्ट के लिए स्टाइल */
+.input-group small {
+    color: #777;
+    margin-top: 5px;
+    font-size: 0.8em;
+}
+
+/* ============================================== */
+/* 💥 NEW: SHIFT CONFIGURATION SPECIFIC STYLES 💥 */
+/* ============================================== */
+
+.shift-config-fieldset {
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.shift-config-fieldset legend {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #007bff;
+    padding: 0 10px;
+}
+
+.shift-config-fieldset .form-row {
+    /* यहां हमने गैप कम किया ताकि 4 फ़ील्ड्स आसानी से फिट हो सकें */
+    gap: 15px; 
+    margin-bottom: 0;
+}
+
+.shift-config-fieldset .form-row .input-group {
+    /* 4 फ़ील्ड्स को बराबर जगह देने के लिए (लगभग 22% जगह) */
+    flex: 1 1 22%; 
+    min-width: 140px; /* न्यूनतम चौड़ाई सेट करें */
+}
+
+
+/* ** वैधानिक (Statutory) विकल्प रो ** */
+.statutory-row {
+    margin-top: 30px;
+    border-top: 1px dashed #ddd;
+    padding-top: 20px;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.checkbox-group label {
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+.checkbox-group input[type="radio"] {
+    width: auto;
+    margin-left: 5px;
+}
+
+/* ** बटन रो ** */
+.button-row {
+    display: flex;
+    justify-content: flex-end; /* बटन को दाईं ओर ले जाएँ */
+    gap: 15px;
+    margin-top: 40px;
+}
+
+.action-btn {
+    width: auto;
+    padding: 10px 25px;
+    font-size: 1em;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px; /* गोलाकार बटन */
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.submit-btn {
+    background-color: #28a745; /* Submit - हरा */
+    color: white;
+}
+
+.back-btn {
+    background-color: #6c757d; /* Back - ग्रे */
+    color: white;
+}
+
+.logout-btn {
+    background-color: #dc3545; /* Logout - लाल */
+    color: white;
+}
+
+/* ============================================== */
+/* 📱 RESPONSIVE DESIGN (Mobile) */
+/* ============================================== */
+
+@media (max-width: 768px) {
+    .registration-container {
+        padding: 30px 20px;
+    }
+    
+    /* जनरल फॉर्म रो: 2 कॉलम */
+    .form-row {
+        gap: 15px;
+    }
+
+    /* शिफ्ट रो: 2 कॉलम */
+    .shift-config-fieldset .form-row .input-group {
+        flex: 1 1 45%; /* दो-दो करके दिखाएँ */
+        min-width: 140px;
+    }
+    
+    /* 480px से नीचे: सभी फ़ील्ड्स स्टैक हो जाएं (एक कॉलम) */
+    @media (max-width: 480px) {
+        .form-row, .shift-config-fieldset .form-row {
+            flex-direction: column;
+            gap: 15px;
+        }
+        .input-group, .shift-config-fieldset .form-row .input-group {
+            flex: 1 1 100%;
+            min-width: 100%;
+        }
+        .button-row {
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    }
+}

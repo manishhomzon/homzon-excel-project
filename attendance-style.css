@@ -1,0 +1,180 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    /* 3D background effect */
+    background: radial-gradient(circle at top left, #a1c4fd 0%, #c2e9fb 100%); 
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.attendance-container {
+    width: 100%;
+    max-width: 900px; /* Thoda kam चौड़ाई */
+    background-color: #ffffff;
+    padding: 30px 40px; /* Padding kam kiya */
+    border-radius: 20px; /* Zyada gol kona */
+    
+    /* World-Class Deep Shadow / Neumorphic Effect */
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.3), /* Deep dark shadow */
+        0 0 0 10px rgba(255, 255, 255, 0.5) inset; /* Soft inner highlight */
+    border-left: 8px solid #0056b3; /* Darker, prominent side bar */
+    transition: all 0.5s ease-in-out;
+}
+
+.att-header {
+    text-align: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.att-header h1 {
+    font-size: 2em;
+    color: #0056b3;
+    font-weight: 900;
+}
+
+.att-header p {
+    color: #666;
+    margin-top: 5px;
+    font-size: 1em;
+}
+
+/* डिजिटल क्लॉक स्टाइलिंग - अब भी प्रीमियम */
+.digital-clock-style {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.2rem; 
+    font-weight: 800;
+    color: #FFFFFF;
+    background: linear-gradient(145deg, #007BFF, #0056b3);
+    padding: 15px 25px;
+    margin: 20px auto; 
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); 
+    letter-spacing: 3px; 
+    max-width: 350px; 
+}
+
+/* इनपुट रो लेआउट - Compact और Clean */
+.form-row {
+    display: flex;
+    gap: 15px; /* Gap kam kiya for compactness */
+    margin-bottom: 15px;
+    align-items: flex-start; 
+}
+
+/* Overtime row ko alag se handle karein taaki woh zyada jagah na le */
+.status-row {
+    justify-content: flex-start;
+}
+.overtime-group {
+    max-width: 300px; /* Overtime group ki चौड़ाई सीमित karein */
+}
+
+
+.input-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #444;
+    font-size: 0.9em;
+}
+
+.required {
+    color: #dc3545;
+}
+
+.input-group input, .input-group select {
+    padding: 10px; /* Padding kam kiya */
+    border: 1px solid #ccc;
+    border-radius: 10px; /* Zyada gol kinaare */
+    font-size: 0.95em;
+    background-color: #ffffff;
+    
+    /* Input Shadow: Soft inner shadow for 3D/pressed look */
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.08); 
+    transition: all 0.3s;
+}
+
+.input-group input:focus, .input-group select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
+    outline: none;
+    background-color: #fff;
+}
+
+.input-group input[readonly] {
+    background-color: #f0f0f0; 
+    cursor: not-allowed;
+    color: #777;
+}
+
+
+/* Overtime Highlight Effect */
+#overtimeHours.ot-highlight {
+    border-color: #ffc107; 
+    /* Prominent Glow */
+    box-shadow: 
+        0 0 10px rgba(255, 193, 7, 0.9), 
+        0 0 20px rgba(255, 152, 0, 0.7); 
+    transform: scale(1.02); 
+}
+
+/* बटन रो */
+.button-row {
+    display: flex;
+    justify-content: center; /* Buttons ko center mein kiya */
+    gap: 20px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.action-btn {
+    width: 180px; /* Fixed width for better look */
+    padding: 12px 25px; 
+    font-size: 1.05em;
+    font-weight: 700;
+    border: none;
+    border-radius: 30px; /* Pill shape */
+    cursor: pointer;
+    
+    /* 3D Button Effect */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); 
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s;
+}
+
+.action-btn:hover {
+    transform: translateY(-3px); /* Zyada lift */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Zyada shadow */
+}
+
+.action-btn:active {
+    transform: translateY(-1px); /* Press hone par halka neeche jaana */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.submit-btn {
+    background: linear-gradient(45deg, #28a745, #1e7e34); /* Gradient */
+    color: white;
+}
+
+.back-btn {
+    background: linear-gradient(45deg, #6c757d, #5a6268);
+    color: white;
+}
+
+.logout-btn {
+    background: linear-gradient(45deg, #dc3545, #bd2130);
+    color: white;
+}

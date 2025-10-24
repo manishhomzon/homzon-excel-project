@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - HOMZON EXCEL SERVICES</title>
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+    <div class="login-container">
+        <header class="company-info">
+            <h1>HOMZON EXCEL SERVICES PVT. LTD.</h1>
+            <p class="address">Address: 640, Narsingh Ward, Above Bandhan Bank, Madan Mahal, Jabalpur (M.P.)-482001</p>
+        </header>
+
+        <h2>Login</h2>
+        
+        <div id="message" style="margin-bottom: 15px; color: red;"></div>
+
+        <form id="loginForm"> 
+            
+            <div class="input-group">
+                <label for="email">ईमेल (Email):</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="password">पासवर्ड (Password):</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            
+            <button type="submit" id="loginButton">Login</button>
+        </form>
+
+        <div class="extra-actions">
+            <button type="button" class="action-btn" onclick="window.location.href='employee-register.html'">Register Now</button>
+            
+            <button type="button" class="action-btn" onclick="alert('Forget Password feature needs backend integration!');">Forget Password</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script> 
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - HOMZON EXCEL SERVICES</title>
+    <link rel="stylesheet" href="dashboard-style.css"> 
+</head>
+<body>
+    <div class="dashboard-container">
+        
+        <header class="header">
+            <h1>वेलकम! आप HOMZON EXCEL SERVICES डैशबोर्ड पर हैं।</h1>
+            <p>आपका लॉगिन और OTP सत्यापन सफल रहा। कृपया नीचे दिए गए विकल्पों में से चुनें।</p>
+        </header>
+
+        <div class="action-buttons-row">
+            
+            <button class="action-btn hr-btn" onclick="window.location.href='hr-dashboard.html'">
+                👥 HR Dashboard
+            </button>
+            
+            <button class="action-btn reg-btn" onclick="window.location.href='employee-register.html'">
+                Employee Registration
+            </button>
+            
+            <button class="action-btn att-btn" onclick="window.location.href='attendance-dashboard.html'">
+                Attendance
+            </button>
+            
+            <button class="action-btn sal-btn" onclick="window.location.href='salary-calculation-dashboard.html'">
+                Salary
+            </button>
+            
+            <button class="action-btn logout-btn" onclick="window.location.href='index.html'">
+                Logout
+            </button>
+        </div>
+
+        <div class="action-buttons-row secondary-row" style="margin-top: 20px;">
+            
+            <button class="action-btn status-btn" onclick="window.location.href='attendance-status-dashboard.html'">
+                Attendance Status
+            </button>
+            
+            <button class="action-btn advance-eligibility-btn" onclick="window.location.href='advance-eligibility.html'">
+                💵 Advance Eligibility
+            </button>
+            <button class="action-btn delete-emp-btn" onclick="window.location.href='employee-delete-dashboard.html'">
+                Delete Employee
+            </button>
+            
+            <button class="action-btn print-salary-slip-btn" onclick="window.location.href='salary-slip-print.html'">
+                🖨️ Print Salary Slip
+            </button>
+            <button class="action-btn report-btn" onclick="window.location.href='company-report-dashboard.html'">
+                Company Report
+            </button>
+        </div>
+        
+    </div>
+</body>
+</html>

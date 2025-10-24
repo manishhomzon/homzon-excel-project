@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Joining Form | Homzon HR</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ================================================= */
+        /* BASE STYLES (Screen View) */
+        /* ================================================= */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            padding: 20px;
+        }
+        .form-container {
+            max-width: 900px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        
+        /* Header & Title */
+        .company-header { text-align: center; margin-bottom: 20px; }
+        #companyNameDisplay { font-size: 1.8em; font-weight: 700; color: #007bff; margin: 0; line-height: 1.2; }
+        .company-header p { font-size: 0.9em; color: #555; margin: 5px 0 15px 0; border-bottom: 2px solid #ddd; padding-bottom: 10px; }
+        .form-title { text-align: center; font-size: 1.4em; margin-top: 15px; margin-bottom: 20px; }
+        
+        /* Section Heading */
+        .section-heading {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #333;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 5px;
+        }
+
+        /* Form Fields Styling */
+        .field-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+            border-bottom: 1px dotted #ccc; 
+            padding-bottom: 3px;
+        }
+        .field-row label {
+            flex: 0 0 200px; 
+            font-weight: bold;
+            color: #333;
+            padding-top: 5px;
+        }
+        .field-row .input-container {
+            flex: 1;
+            min-width: 200px;
+        }
+        input[type="text"], input[type="date"], input[type="tel"], input[type="email"], textarea, select {
+            width: 100%;
+            padding: 5px;
+            border: none;
+            border-bottom: 1px solid #aaa; 
+            box-sizing: border-box;
+            background-color: #fcfcfc;
+        }
+        textarea {
+            resize: none;
+            height: 35px; 
+        }
+
+        /* Inline Options */
+        .inline-options {
+            display: flex;
+            gap: 15px;
+            padding-top: 5px;
+            font-weight: normal;
+        }
+        .inline-options label {
+            flex: unset;
+            font-weight: normal;
+            margin-right: 5px;
+        }
+
+        /* Self Declaration Area */
+        .declaration-area {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-top: 30px;
+            font-size: 0.9em;
+            line-height: 1.5;
+            text-align: justify;
+        }
+        .declaration-area p {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Signature Footer */
+        .signature-section {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding-top: 15px;
+        }
+        .signature-group {
+            text-align: center;
+            flex: 1;
+        }
+        .signature-line {
+            border-top: 1px solid #333;
+            margin: 5px 20px;
+            padding-top: 5px;
+            font-size: 0.9em;
+        }
+        
+        /* Controls (Screen Only) */
+        .controls {
+            padding: 20px; background: #f0f0f0; border-radius: 8px; text-align: center; margin-top: 20px;
+        }
+
+        /* NEW: Document Upload styling (Screen Only) */
+        .document-upload-section {
+            padding: 15px;
+            border: 1px dashed #007bff;
+            background-color: #e6f0ff;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        .document-upload-section .field-row {
+            border-bottom: none;
+        }
+        .document-upload-section input[type="file"] {
+            border: 1px solid #ccc;
+            padding: 5px;
+            background-color: #fff;
+        }
+
+        /* ================================================= */
+        /* PRINT STYLES (Optimized for A4) */
+        /* ================================================= */
+        @page { margin: 0.5cm; }
+        @media print {
+            body { padding: 0; font-size: 9pt; }
+            .form-container {
+                box-shadow: none;
+                border: 2px solid #333; 
+                padding: 10px; 
+                min-height: 45cm; 
+            }
+            /* स्क्रीन कंट्रोल्स और फोटो इनपुट को छिपाएँ */
+            .controls, #companySelector, #employeePhoto, .photo-sidebar label, 
+            .document-upload-section /* NEW: Hide Upload Section on Print */
+            {
+                display: none !important; 
+            }
+            .section-heading { font-size: 1em; margin-top: 15px; margin-bottom: 5px; }
+            
+            /* Photo Placement (दाएँ तरफ 1 इंच पास) */
+            .photo-sidebar {
+                position: absolute;
+                top: 90px; 
+                left: auto; 
+                right: 30px; 
+                border: 1px solid #333;
+                width: 80px; 
+                height: 90px; 
+                padding: 0;
+                display: flex; 
+                align-items: center;
+                justify-content: center;
+            }
+            #profilePhotoPreview { width: 78px; height: 88px; object-fit: cover; border-radius: 0; border: none; }
+            
+            /* Form Field Print Styling */
+            .field-row { margin-bottom: 3px; padding-bottom: 0; border-bottom: 1px dotted #333; page-break-after: avoid; }
+            .field-row label { flex: 0 0 170px; font-size: 0.8em; }
+            input[type="text"], input[type="date"], input[type="tel"], input[type="email"], textarea, select { border-bottom: 1px dotted #555; padding: 0; font-size: 0.8em; }
+            textarea { height: 25px; }
+
+            /* Declaration & Signature */
+            .declaration-area { margin-top: 20px; padding: 10px; font-size: 0.8em; }
+            .signature-section { margin-top: 30px; padding-top: 10px; font-size: 0.75em; }
+            .signature-line { margin: 5px 5px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        
+        <div class="controls">
+            <label for="companySelector">Select Company for Header:</label>
+            <select id="companySelector" onchange="updateHeader()">
+                <option value="HOMZON EXCEL SERVICES PVT. LTD." selected>HOMZON EXCEL SERVICES PVT. LTD.</option>
+                <option value="CANDID JOBS&PLACEMENT">CANDID JOBS&PLACEMENT</option>
+                <option value="AAKAAR CONASTRUCTION">AAKAAR CONASTRUCTION</option>
+                <option value="HOME CARE">HOME CARE</option>
+            </select>
+            <button type="submit" form="employeeJoiningForm" class="action-btn save-btn" style="background-color: #28a745;">
+                <i class="fas fa-save"></i> Save Employee Record & Documents
+            </button>
+            <button type="button" class="action-btn print-btn" onclick="window.print()" style="background-color: #007bff;">
+                <i class="fas fa-print"></i> Print Form
+            </button>
+        </div>
+
+        <div class="printable-document">
+            
+            <header class="company-header">
+                <h2 id="companyNameDisplay">HOMZON EXCEL SERVICES PVT. LTD.</h2>
+                <p>ADDRESS-640, Narsingh Ward, Above Bandahn Bank, Madan Mahal, Jabalpur (M.P)-482001</p>
+                <h3 class="form-title">
+                    <span style="text-decoration: underline;">EMPLOYEE JOINING FORM</span>
+                </h3>
+            </header>
+            
+            <div class="form-layout">
+                
+                <div class="photo-sidebar">
+                    <img id="profilePhotoPreview" src="default-profile.png" alt="Employee Photo">
+                    <input type="file" id="employeePhoto" accept="image/*"> 
+                    <label for="employeePhoto" style="font-size: 0.8em;">Upload Photo</label>
+                </div>
+
+                <form id="employeeJoiningForm" class="main-fields">
+
+                    <div class="section-heading">1. Personal & Contact Details</div>
+
+                    <div class="field-row">
+                        <label for="name">Employee Name</label>
+                        <div class="input-container"><input type="text" id="name" required></div>
+                    </div>
+                    <div class="field-row">
+                        <label for="f_h_name">Father's / Husband Name</label>
+                        <div class="input-container"><input type="text" id="f_h_name" required></div>
+                    </div>
+                    <div class="field-row">
+                        <label for="designation">Designation / Employee Code</label>
+                        <div class="input-container" style="display: flex; gap: 10px;">
+                            <input type="text" id="designation" placeholder="Designation" style="flex: 1;" required>
+                            <input type="text" id="employeeCode" placeholder="Employee Code" style="flex: 1;">
+                        </div>
+                    </div>
+                    <div class="field-row">
+                        <label for="joiningDate">Joining Date / DOB</label>
+                        <div class="input-container" style="display: flex; gap: 10px;">
+                            <input type="date" id="joiningDate" placeholder="Joining Date" style="flex: 1;" required>
+                            <input type="date" id="dob" placeholder="Date of Birth" style="flex: 1;" required>
+                        </div>
+                    </div>
+
+                    <div class="field-row">
+                        <label for="permAddress">Permanent Address (02 Lines)</label>
+                        <div class="input-container"><textarea id="permAddress" rows="2" required></textarea></div>
+                    </div>
+                    <div class="field-row">
+                        <label for="district">District / Thana / Pincode</label>
+                        <div class="input-container" style="display: flex; gap: 10px;">
+                            <input type="text" id="district" placeholder="District" style="flex: 1;">
+                            <input type="text" id="thana" placeholder="Thana" style="flex: 1;">
+                            <input type="text" id="pincode" placeholder="Pincode" style="flex: 1;">
+                        </div>
+                    </div>
+
+                    <div class="field-row">
+                        <label for="currAddress">Current Address</label>
+                        <div class="input-container">
+                            <input type="checkbox" id="sameAsPerm" onchange="copyAddress(this.checked)" style="width: auto; margin-right: 5px;">
+                            <label for="sameAsPerm" style="width: auto; font-weight: normal; flex: unset;">Same as Permanent Address</label>
+                            <textarea id="currAddress" rows="2" required></textarea>
+                        </div>
+                    </div>
+                    <div class="field-row">
+                        <label>Property Status</label>
+                        <div class="input-container inline-options">
+                            <input type="radio" id="rented" name="propertyStatus" value="Rented" style="width: auto;"><label for="rented">Rented</label>
+                            <input type="radio" id="own" name="propertyStatus" value="Own Property" style="width: auto;"><label for="own">Own Property</label>
+                        </div>
+                    </div>
+                    <div class="field-row">
+                        <label for="contactNo">Contact No. / Email</label>
+                        <div class="input-container" style="display: flex; gap: 10px;">
+                            <input type="tel" id="contactNo" placeholder="Contact No." style="flex: 1;" required>
+                            <input type="email" id="email" placeholder="Email Address" style="flex: 1;">
+                        </div>
+                    </div>
+                    <div class="field-row">
+                        <label>Other Details</label>
+                        <div class="input-container" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                            <select id="maritalStatus" style="flex: 1; min-width: 100px;">
+                                <option value="" disabled selected>Marital Status</option>
+                                <option>Single</option>
+                                <option>Married</option>
+                                <option>Divorced</option>
+                            </select>
+                            <input type="text" id="placeOfBirth" placeholder="Place of Birth" style="flex: 1;">
+                            <input type="text" id="bloodGroup" placeholder="Blood Group" style="flex: 1;">
+                            <input type="text" id="religion" placeholder="Religion" style="flex: 1;">
+                            <input type="text" id="caste" placeholder="Caste" style="flex: 1;">
+                        </div>
+                    </div>
+
+                    <div class="field-row">
+                        <label for="idType">ID Proof (01 Required)</label>
+                        <div class="input-container" style="display: flex; gap: 10px;">
+                            <select id="idType" style="flex: 1; min-width: 100px;">
+                                <option value="" disabled selected>Select ID Type</option>
+                                <option>Aadhar Card</option>
+                                <option>Voter ID</option>
+                                <option>Pan Card</option>
+                            </select>
+                            <input type="text" id="idNumber" placeholder="ID Number" style="flex: 2;">
+                        </div>
+                    </div>
+
+
+                    <div class="section-heading">2. Emergency Contact Details</div>
+                    <div class="field-row">
+                        <label for="emergencyName">Name</label>
+                        <div class="input-container"><input type="text" id="emergencyName" required></div>
+                    </div>
+                    <div class="field-row">
+                        <label for="emergencyRelation">Relation / Contact No</label>
+                        <div class="input-container" style="display: flex; gap: 10px;">
+                            <input type="text" id="emergencyRelation" placeholder="Relation" style="flex: 1;" required>
+                            <input type="tel" id="emergencyContactNo" placeholder="Contact No" style="flex: 1;" required>
+                        </div>
+                    </div>
+
+
+                    <div class="section-heading">3. Educational & Work Experience</div>
+                    <div class="field-row">
+                        <label for="educationalDetails">Educational Details</label>
+                        <div class="input-container"><textarea id="educationalDetails" rows="2" placeholder="e.g., High School: 2015, Graduation: 2020"></textarea></div>
+                    </div>
+                    <div class="field-row">
+                        <label for="workExperience">Work Experience</label>
+                        <div class="input-container"><textarea id="workExperience" rows="2" placeholder="e.g., Company ABC (2020-2022), Role: Sales Manager"></textarea></div>
+                    </div>
+
+
+                    <div class="section-heading">4. Family Details</div>
+                    
+                    <div class="field-row">
+                        <label>Family Details</label>
+                        <div class="input-container">
+                            <input type="text" placeholder="Wife Name / Children Name" required>
+                        </div>
+                    </div>
+
+                    <div class="section-heading">5. Bank Details</div>
+
+                    <div class="field-row">
+                        <label for="bankAccNo">Bank Account Number</label>
+                        <div class="input-container"><input type="text" id="bankAccNo" required></div>
+                    </div>
+
+                    <div class="field-row">
+                        <label for="ifscCode">IFSC Code / Bank Name</label>
+                        <div class="input-container" style="display: flex; gap: 10px;">
+                            <input type="text" id="ifscCode" placeholder="IFSC Code" style="flex: 1;" required>
+                            <input type="text" id="bankName" placeholder="Bank Name / Branch" style="flex: 2;" required>
+                        </div>
+                    </div>
+
+                    <div class="document-upload-section">
+                        <div class="section-heading" style="border-bottom: 2px solid #555;">6. Document Uploads (HR System)</div>
+
+                        <div class="field-row">
+                            <label for="uploadId">ID Proof (PDF/IMG)</label>
+                            <div class="input-container">
+                                <input type="file" id="uploadId" accept="application/pdf, image/*" required>
+                            </div>
+                        </div>
+
+                        <div class="field-row">
+                            <label for="uploadBank">Bank Passbook (PDF/IMG)</label>
+                            <div class="input-container">
+                                <input type="file" id="uploadBank" accept="application/pdf, image/*" required>
+                            </div>
+                        </div>
+                        
+                        <div class="field-row">
+                            <label for="uploadEdu">Educational Certs (Optional)</label>
+                            <div class="input-container">
+                                <input type="file" id="uploadEdu" accept="application/pdf, image/*">
+                            </div>
+                        </div>
+
+                        <div class="field-row">
+                            <label for="uploadAddress">Address Proof (Optional)</label>
+                            <div class="input-container">
+                                <input type="file" id="uploadAddress" accept="application/pdf, image/*">
+                            </div>
+                        </div>
+
+                        <div style="font-size: 0.8em; color: #555; text-align: center; margin-top: 10px;">
+                            (Note: Document upload buttons will NOT appear on the printed hard copy)
+                        </div>
+                    </div>
+
+
+                    <div class="declaration-area">
+                        <p style="font-weight: bold; margin-bottom: 5px;">Self Declaration (स्वघोषणा):</p>
+                        <p>I hereby declare that the above statements made in my joining form are true, complete and correct to the best of my knowledge and belief. In the event of any information being found false or incorrect at any stage, my services are liable to be terminated without notice.</p>
+                        <p style="margin-top: 5px;">मैं यह घोषणा करता हूँ/करती हूँ कि मेरे जॉइनिंग फॉर्म में दिए गए उपरोक्त कथन मेरे ज्ञान और विश्वास के अनुसार सत्य, पूर्ण और सही हैं। यदि किसी भी चरण में कोई भी जानकारी झूठी या गलत पाई जाती है, तो मेरी सेवाएँ बिना किसी सूचना के समाप्त की जा सकती हैं।</p>
+                    </div>
+                    
+                </form>
+
+            </div>
+            
+            <div class="signature-section">
+                <div class="signature-group">
+                    <div id="currentDate" class="signature-line" style="border-top: none;"></div>
+                    <div class="signature-line" style="border-top: none;">Date:</div>
+                </div>
+                <div class="signature-group">
+                    <div class="signature-line">Employee Signature</div>
+                </div>
+                <div class="signature-group">
+                    <div class="signature-line">HR Signature</div>
+                </div>
+            </div>
+            
+        </div>
+        </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Header Dropdown Logic
+            const companySelector = document.getElementById('companySelector');
+            const companyNameDisplay = document.getElementById('companyNameDisplay');
+            
+            window.updateHeader = function() {
+                companyNameDisplay.textContent = companySelector.value;
+            }
+            updateHeader();
+
+            // Photo Preview Logic
+            const photoInput = document.getElementById('employeePhoto');
+            const photoPreview = document.getElementById('profilePhotoPreview');
+            
+            photoInput.addEventListener('change', function() {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        photoPreview.src = e.target.result;
+                    }
+                    reader.readAsDataURL(file);
+                } else {
+                    photoPreview.src = "default-profile.png"; 
+                }
+            });
+
+            // Set Current Date in Footer
+            const dateElement = document.getElementById('currentDate');
+            const today = new Date();
+            const dateString = today.toLocaleDateString('en-GB', {
+                day: '2-digit', month: '2-digit', year: 'numeric'
+            });
+            dateElement.textContent = dateString;
+
+            // Current Address Copy Logic
+            window.copyAddress = function(isChecked) {
+                const permAddress = document.getElementById('permAddress').value;
+                const currAddress = document.getElementById('currAddress');
+                
+                if (isChecked) {
+                    currAddress.value = permAddress;
+                    currAddress.disabled = true;
+                } else {
+                    currAddress.value = '';
+                    currAddress.disabled = false;
+                }
+            }
+        });
+    </script> 
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Employee | Homzon</title>
+    <link rel="stylesheet" href="attendance-style.css"> 
+    <style>
+        /* सामान्य बटन स्टाइलिंग (यह मानकर कि आपके पास attendance-style.css में कुछ डिफ़ॉल्ट स्टाइल हैं) */
+        .delete-btn {
+            background-color: #dc3545 !important;
+        }
+        /* नया बटन स्टाइलिंग */
+        .go-back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 15px;
+            background-color: #6c757d; /* Secondary color for Back Button */
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .go-back-link:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <div class="attendance-container">
+        <header class="att-header">
+            <h1>Delete Employee Record</h1>
+            <p>Permanently remove employee data from the system.</p>
+        </header>
+
+        <a href="dashboard.html" class="go-back-link">
+            ← Dashboard पर वापस जाएँ
+        </a>
+        
+        <form id="deleteForm">
+            <div class="form-row">
+                <div class="input-group" style="width: 100%;">
+                    <label for="deleteEmpName">Select Employee to Delete <span class="required">*</span></label>
+                    <select id="deleteEmpName" required>
+                        <option value="">-- Select Employee --</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="button-row" style="margin-top: 20px;">
+                <button type="submit" class="action-btn delete-btn">
+                    ⚠️ Permanently Delete Employee
+                </button>
+                <button type="button" class="action-btn back-btn" onclick="window.location.href='dashboard.html'">
+                    Cancel & Back
+                </button>
+            </div>
+        </form>
+    </div>
+    
+    <script src="employee-delete-script.js"></script> 
+</body>
+</html>
