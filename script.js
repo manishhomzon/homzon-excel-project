@@ -1,6 +1,6 @@
 // script.js
 // Dhyan Dein: Deployment ke baad is URL ko aapke Render API URL se badalna hoga.
-const BASE_URL = 'http://localhost:3000/api'; 
+const BASE_URL = 'https://homzon-excel-project.onrender.com'; 
 
 document.addEventListener('DOMContentLoaded', () => {
     const toggleButton = document.getElementById('toggleForm');
