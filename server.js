@@ -2,79 +2,84 @@
 require('dotenv').config(); // .env file se variables load karega
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors'); // CORS middleware import kiya gaya hai
+const cors = require('cors');
 
 const app = express();
-const PORT = process.env.PORT || 3000; 
-const mongoURI = process.env.MONGO_URI; 
-
-// CLIENT_ORIGIN ko Environment Variables se liya gaya hai.
-// Agar Render par set nahi hai, toh '*' (sabhi ko allow karein) use karein.
-const CLIENT_ORIGIN = process.env.CLIENT_ORIGIN || '*'; 
+const PORT = process.env.PORT || 3000;
+const mongoURI = process.env.MONGO_URI;
 
 // ---------------------------------
-// Middleware Setup
+// CORS Setup (Render + Frontend Support)
 // ---------------------------------
-// CORS ko specific origin ya '*' ke liye allow karein (Render environment ke liye zaroori)
-app.use(cors({
+const CLIENT_ORIGIN = process.env.CLIENT_ORIGIN || '*';
+app.use(
+  cors({
     origin: CLIENT_ORIGIN,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
-})); 
+  })
+);
 
-app.use(express.json()); // JSON request body ko parse karne ke liye
+app.use(express.json());
 
 // ---------------------------------
 // DATABASE CONNECTION
 // ---------------------------------
-mongoose.connect(mongoURI)
-    .then(() => console.log('MongoDB connected successfully ✅'))
-    .catch(err => {
-        console.error('MongoDB connection error ❌:', err);
-        process.exit(1); 
-    });
+mongoose
+  .connect(mongoURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log('✅ MongoDB connected successfully'))
+  .catch((err) => {
+    console.error('❌ MongoDB connection error:', err.message);
+    process.exit(1);
+  });
 
 // ---------------------------------
-// USER MODEL (Schema)
+// USER MODEL
 // ---------------------------------
-const UserSchema = new mongoose.Schema({
-    username: { 
-        type: String, 
-        required: true, 
-        unique: true 
-    },
-    password: { 
-        type: String, 
-        required: true 
-    },
-    otp: { 
-        type: String, 
-        default: null 
-    }, 
-    otpExpires: { 
-        type: Date, 
-        default: null 
-    }
-}, { timestamps: true });
+const UserSchema = new mongoose.Schema(
+  {
+    username: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    otp: { type: String, default: null },
+    otpExpires: { type: Date, default: null },
+  },
+  { timestamps: true }
+);
 
 const User = mongoose.model('User', UserSchema);
 
 // ---------------------------------
-// ROUTES
+// ROUTES IMPORT
 // ---------------------------------
-// routes/auth.js file import karein
-const authRoutes = require('./routes/auth'); 
-app.use('/api', authRoutes(User)); 
+const authRoutes = require('./routes/auth');
+app.use('/api', authRoutes(User));
 
-// Basic server test route
+// ---------------------------------
+// TEST ROUTE
+// ---------------------------------
 app.get('/', (req, res) => {
-    res.send('HOMZON EXCEL SERVICES Backend Running!');
+  res.status(200).json({
+    success: true,
+    message: '🚀 HOMZON EXCEL SERVICES Backend is Running!',
+  });
 });
 
 // ---------------------------------
-// SERVER START
+// ERROR HANDLER (Global)
+// ---------------------------------
+app.use((err, req, res, next) => {
+  console.error('Server Error:', err);
+  res.status(500).json({ success: false, message: 'Internal Server Error' });
+});
+
+// ---------------------------------
+// START SERVER
 // ---------------------------------
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-    console.log(`Ready for database operations...`);
+  console.log(`✅ Server running on port ${PORT}`);
+  console.log(`🌍 Ready for connections`);
 });
